@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>موقع المدرسة - مدرس علوم وأحياء</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --blue:#0b6ef6;
+      --dark:#073a8a;
+      --muted:#6b7280;
+      --card:#ffffff;
+      --glass: rgba(255,255,255,0.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:'Cairo',sans-serif;
+      background: linear-gradient(180deg,#e8f1ff 0%, #f7fbff 100%);
+      color:#0b1b3a;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(6px);
+      background:linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.45));
+      border-bottom:1px solid rgba(11,110,246,0.08);
+      padding:14px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand .logo{
+      width:56px;height:56px;border-radius:12px;background:var(--blue);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:18px;box-shadow:0 6px 18px rgba(11,110,246,0.18);
+    }
+    .brand h1{margin:0;font-size:18px}
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{color:var(--dark);text-decoration:none;padding:8px 12px;border-radius:8px}
+    nav a.btn{background:var(--blue);color:#fff}
+
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 480px;
+      gap:26px;
+      align-items:start;
+      padding:28px 20px 40px;
+      max-width:1200px;margin:20px auto;
+    }
+    .hero-card{
+      padding:22px;border-radius:16px;background: linear-gradient(180deg, rgba(255,255,255,0.9), #ffffff);
+      box-shadow: 0 10px 30px rgba(11,110,246,0.06);
+      border:1px solid rgba(11,110,246,0.06);
+    }
+
+    /* teacher area */
+    .teacher{
+      display:flex;gap:16px;align-items:flex-start;
+    }
+    .teacher .main-photo{
+      flex:0 0 240px;height:320px;border-radius:14px;overflow:hidden;position:relative;
+      box-shadow:0 18px 40px rgba(11,110,246,0.08);
+      border:6px solid rgba(11,110,246,0.06);
+      background:linear-gradient(180deg,#f6f9ff,#eaf3ff);
+      display:flex;align-items:center;justify-content:center;
+    }
+    .teacher .main-photo img{width:100%;height:100%;object-fit:cover;display:block}
+    .teacher .info{flex:1}
+    .teacher h2{margin:0 0 8px;font-size:22px}
+    .teacher p{margin:0 0 12px;color:var(--muted)}
+
+    /* side contacts */
+    .side-contacts{
+      display:flex;gap:10px;margin-top:12px;
+    }
+    .contact-card{
+      background:var(--glass);padding:8px;border-radius:12px;flex:1;text-align:center;
+      border:1px solid rgba(255,255,255,0.06);
+    }
+    .contact-card img{width:84px;height:84px;border-radius:10px;object-fit:cover;margin-bottom:8px}
+    .contact-card h4{margin:6px 0;font-size:15px}
+    .contact-card a{display:inline-block;margin-top:6px;padding:8px 12px;border-radius:8px;background:var(--blue);color:#fff;text-decoration:none}
+
+    /* right column (video list + books) */
+    .right-column{
+      display:flex;flex-direction:column;gap:16px;
+    }
+
+    .videos-grid{
+      display:grid;grid-template-columns:repeat(2,1fr);gap:12px;
+    }
+    .video-card{
+      background:linear-gradient(180deg,#fff, #fbfdff);
+      border-radius:12px;padding:10px;border:1px solid rgba(11,110,246,0.04);
+      box-shadow:0 6px 18px rgba(11,110,246,0.04);cursor:pointer;
+    }
+    .video-card img{width:100%;height:120px;object-fit:cover;border-radius:8px}
+    .video-card h5{margin:8px 0 4px}
+    .video-card p{margin:0;color:var(--muted);font-size:13px}
+
+    .books{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:6px;
+    }
+    .book{
+      background:#fff;padding:8px;border-radius:10px;text-align:center;border:1px solid rgba(11,110,246,0.04);
+    }
+    .book img{width:100%;height:120px;object-fit:cover;border-radius:8px}
+    .book button{margin-top:8px;padding:8px 10px;border-radius:8px;border:0;background:var(--dark);color:#fff;cursor:pointer}
+
+    /* vodafone cash area */
+    .vodafone{
+      margin-top:12px;padding:12px;border-radius:12px;background:linear-gradient(90deg,#fff7f7,#fff);
+      border:1px solid rgba(255,80,80,0.06);
+    }
+    .vodafone .row{display:flex;gap:12px;align-items:center;justify-content:space-between}
+    .vodafone input[type="text"]{padding:10px;border-radius:8px;border:1px solid rgba(11,110,246,0.06);width:100%}
+
+    /* login modal */
+    .overlay{position:fixed;inset:0;background:rgba(2,6,23,0.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:80}
+    .modal{background:#fff;border-radius:12px;padding:20px;max-width:420px;width:100%}
+    .modal h3{margin-top:0}
+    .form-row{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+    .form-row input{padding:10px;border-radius:8px;border:1px solid rgba(11,110,246,0.06)}
+
+    .close-btn{background:transparent;border:0;font-size:20px;cursor:pointer;position:absolute;right:18px;top:12px;color:var(--muted)}
+
+    /* student card */
+    .student-card{margin-top:12px;padding:12px;border-radius:12px;background:linear-gradient(180deg,#f3f8ff,#ffffff);border:1px solid rgba(11,110,246,0.04)}
+    .student-card h4{margin:0 0 6px}
+
+    footer{margin-top:40px;padding:22px;text-align:center;color:var(--muted);font-size:14px}
+
+    /* responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr; padding:18px}
+      .books{grid-template-columns:repeat(2,1fr)}
+      .videos-grid{grid-template-columns:1fr 1fr}
+      .teacher{flex-direction:column;align-items:center}
+      .teacher .main-photo{width:220px;height:280px}
+    }
+    @media (max-width:600px){
+      nav{display:none}
+      .books{grid-template-columns:repeat(1,1fr)}
+      .videos-grid{grid-template-columns:1fr}
+    }
+
+    /* small animations */
+    .pulse {
+      animation: pulse 2.6s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%{transform:translateY(0)}
+      50%{transform:translateY(-6px)}
+      100%{transform:translateY(0)}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo">ع</div>
+    <div>
+      <h1>موقع مدرس العلوم & الأحياء</h1>
+      <div style="font-size:13px;color:var(--muted)">دروس أونلاين لجميع الصفوف</div>
+    </div>
+  </div>
+
+  <nav>
+    <a href="#videos">الفيديوهات</a>
+    <a href="#books">الكتب</a>
+    <a href="#contact">تواصل</a>
+    <a class="btn" id="openLogin">تسجيل طالب</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <!-- left: content -->
+    <div class="hero-card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <h2>الأستاذ: د. عبدالرحمن اشرف </h2>
+          <p>مدرس أحياء وعلوم — يقدم شرح مبسط وواضح لكل مستوى</p>
+        </div>
+        <div style="text-align:left">
+          <div style="font-size:12px;color:var(--muted)">تحت إشراف</div>
+          <div style="font-weight:600">Eng. Ahmed Farag</div>
+        </div>
+      </div>
+
+      <div class="teacher" style="margin-top:16px">
+        <div class="main-photo">
+          <!-- استبدل الصورة التالية بصورة المدرس: assets/teacher.jpg -->
+          <img src="img/شلايخ.jpg" alt="صورة المدرس">
+        </div>
+
+        <div class="info">
+          <h2>مرحبا بكم في صفوفنا</h2>
+          <p>شرح مميز + تمارين + اختبارات قصيرة. الدروس متاحة للفصول: أول إعدادي - تاني إعدادي - أولى ثانوي - تانية ثانوي.</p>
+
+          <div class="side-contacts">
+            <div class="contact-card">
+              <!-- استبدل الصورة التالية بصورة السكرتير اليمين -->
+              <img src="img/طلعت.jpg" alt="سكرتير يمين">
+              <h4>السكرتير</h4>
+              <div style="font-size:13px;color:var(--muted)">للتواصل</div>
+              <a href="tel:+01066581260">اتصل الآن</a>
+              <div style="margin-top:6px;font-size:12px;color:var(--muted)">01066581260</div>
+            </div>
+
+            <div class="contact-card">
+              <!-- استبدل الصورة التالية بصورة السكرتير الشمال -->
+              <img src="img/adel.jpg" alt="سكرتير شمال">
+              <h4>السكرتير </h4>
+              <div style="font-size:13px;color:var(--muted)">للتواصل</div>
+              <a href="tel:01015743288">اتصل الآن</a>
+              <div style="margin-top:6px;font-size:12px;color:var(--muted)">01015743288</div>
+            </div>
+          </div>
+
+          <!-- زر تسجيل أو عرض بطاقة الطالب بعد التسجيل -->
+          <div id="studentArea"></div>
+
+        </div>
+      </div>
+
+      <!-- وصلة سريعة لفيديو -->
+      <div style="margin-top:12px;display:flex;gap:10px">
+        <a href="#videos" style="padding:10px 14px;border-radius:10px;background:var(--blue);color:#fff;text-decoration:none">شاهد الفيديوهات</a>
+        <a href="#books" style="padding:10px 14px;border-radius:10px;border:1px solid rgba(11,110,246,0.08);text-decoration:none;color:var(--dark)">شاهد الكتب</a>
+      </div>
+    </div>
+
+    <!-- right column: videos + books -->
+    <aside class="right-column">
+      <div class="hero-card">
+        <h3 id="videos">الدروس المصوّرة حسب الصف</h3>
+        <p style="color:var(--muted);margin-top:6px">اضغط على أي صف لمشاهدة قائمة الفيديوهات الخاصة به.</p>
+
+        <div class="videos-grid" style="margin-top:10px">
+          <div class="video-card" onclick="openPlaylist('FirstPrep')">
+            <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=9f6a3c2f4f5a7b1c2d3e4f6a7b8c9d0e" alt="">
+            <h5>أولى إعدادي</h5>
+            <p>فيديوهات مبسطة وسهلة الفهم.</p>
+          </div>
+
+          <div class="video-card" onclick="openPlaylist('SecondPrep')">
+            <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=9f6a3c2f4f5a7b1c2d3e4f6a7b8c9d0e" alt="">
+            <h5>ثانية إعدادي</h5>
+            <p>شرح دروس + تمارين محلولة.</p>
+          </div>
+
+          <div class="video-card" onclick="openPlaylist('FirstSecondary')">
+            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=3b5a5d6c7d8e9f0a1b2c3d4e5f6a7b8c" alt="">
+            <h5>أولى ثانوي</h5>
+            <p>دروس متقدمة ومراجعات للامتحان.</p>
+          </div>
+
+          <div class="video-card" onclick="openPlaylist('SecondSecondary')">
+            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=3b5a5d6c7d8e9f0a1b2c3d4e5f6a7b8c" alt="">
+            <h5>ثانية ثانوي</h5>
+            <p>شرح عميق للمفاهيم وامتحانات تجريبية.</p>
+          </div>
+        </div>
+
+        <!-- عند الضغط على صف، يظهر فيديو إفتتاحي مثال -->
+        <div id="playlistArea" style="margin-top:12px"></div>
+
+      </div>
+
+      <div class="hero-card" id="books">
+        <h3>الكتب (4 أماكن)</h3>
+        <p style="color:var(--muted);margin-top:6px">ضع هنا كتب الشرح أو ملفات PDF للتحميل.</p>
+
+        <div class="books" style="margin-top:10px">
+          <div class="book">
+            <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c" alt="كتاب 1">
+            <div style="font-weight:600;margin-top:8px">كتاب الشرح 1</div>
+            <div style="font-size:13px;color:var(--muted)">ملخص + تمارين</div>
+            <button onclick="alert('استبدل هذا الزر برابط التحميل الفعلي')">تحميل</button>
+          </div>
+
+          <div class="book">
+            <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c" alt="كتاب 2">
+            <div style="font-weight:600;margin-top:8px">كتاب الشرح 2</div>
+            <div style="font-size:13px;color:var(--muted)">ملاحظات شاملة</div>
+            <button onclick="alert('استبدل هذا الزر برابط التحميل الفعلي')">تحميل</button>
+          </div>
+
+          <div class="book">
+            <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c" alt="كتاب 3">
+            <div style="font-weight:600;margin-top:8px">كتاب الشرح 3</div>
+            <div style="font-size:13px;color:var(--muted)">تمارين محلولة</div>
+            <button onclick="alert('استبدل هذا الزر برابط التحميل الفعلي')">تحميل</button>
+          </div>
+
+          <div class="book">
+            <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c" alt="كتاب 4">
+            <div style="font-weight:600;margin-top:8px">كتاب الشرح 4</div>
+            <div style="font-size:13px;color:var(--muted)">مراجعات نهائية</div>
+            <button onclick="alert('استبدل هذا الزر برابط التحميل الفعلي')">تحميل</button>
+          </div>
+        </div>
+
+        <div class="vodafone" style="margin-top:12px" id="contact">
+          <div style="font-weight:600">دفع وداعًا للركب — Vodafone Cash</div>
+          <div style="color:var(--muted);font-size:13px;margin-top:6px">لو عايب تضيف طريقة دفع فاتورة أو استقبال تبرعات/مبالغ من أولياء الأمور، ممكن تكتب رقم فودافون كاش هنا أو تضيف QR لصفحتك التجارية.</div>
+
+          <div style="margin-top:10px" class="row">
+            <div style="flex:1;margin-right:8px">
+              <label style="font-size:13px;color:var(--muted)">رقم Vodafone Cash الخاص بالمدرس (للإستلام):</label>
+              <input type="text" id="vfNumber" placeholder="+20 1X XXX XXXX" value="01061815339">
+            </div>
+            <div style="width:180px">
+              <button onclick="showVodafoneInfo()" style="width:100%;padding:10px;border-radius:8px;background:#ff3b30;color:#fff;border:0">طريقة الدفع</button>
+            </div>
+          </div>
+
+          <div style="font-size:13px;color:var(--muted);margin-top:8px">ملاحظة: لدمج الدفع فعليًا على الموقع تحتاج لعمل حساب تجاري لدى Vodafone Cash أو مزوّد دفع وسيط ثم ربط API أو عرض QR.</div>
+        </div>
+
+      </div>
+    </aside>
+  </section>
+
+  <footer>
+    © كل الحقوق محفوظة — الموقع التعليمي. <br>
+    Supervised by Eng. Ahmed Farag
+  </footer>
+</main>
+
+<!-- Login Modal -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <button class="close-btn" onclick="closeModal()">✕</button>
+    <h3>تسجيل طالب جديد</h3>
+    <div class="form-row">
+      <label>اسم الطالب</label>
+      <input id="stuName" type="text" placeholder=" عبدالرحمن اشرف">
+    </div>
+    <div class="form-row">
+      <label>رقم التليفون</label>
+      <input id="stuPhone" type="text" placeholder="+20 1X XXX XXXX">
+    </div>
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button onclick="closeModal()" style="padding:10px 12px;border-radius:8px;border:1px solid rgba(11,110,246,0.06)">إلغاء</button>
+      <button onclick="registerStudent()" style="padding:10px 12px;border-radius:8px;background:var(--blue);color:#fff;border:0">سجل</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // فتح/غلق المودال
+  document.getElementById('openLogin').addEventListener('click', openModal);
+  function openModal(){ document.getElementById('overlay').style.display = 'flex'; }
+  function closeModal(){ document.getElementById('overlay').style.display = 'none'; }
+
+  // تسجيل طالب (يخزن في localStorage)
+  function registerStudent(){
+    const name = document.getElementById('stuName').value.trim();
+    const phone = document.getElementById('stuPhone').value.trim();
+    if(!name || !phone){ alert('من فضلك اكتب الاسم ورقم التليفون'); return; }
+
+    const students = JSON.parse(localStorage.getItem('students') || '[]');
+    students.push({name, phone, registeredAt: new Date().toISOString()});
+    localStorage.setItem('students', JSON.stringify(students));
+    closeModal();
+    showStudentCard(name, phone);
+    alert('تم التسجيل بنجاح — شكراً لك!');
+  }
+
+  // عرض بطاقة الطالب داخل الصفحة
+  function showStudentCard(name, phone){
+    const area = document.getElementById('studentArea');
+    area.innerHTML = `
+      <div class="student-card">
+        <h4>مرحبا، ${escapeHtml(name)}</h4>
+        <div style="color:var(--muted);font-size:13px">تم التسجيل برقم: ${escapeHtml(phone)}</div>
+        <div style="margin-top:8px">
+          <a href="tel:${phone.replace(/\\s+/g,'')}" style="padding:8px 12px;border-radius:8px;background:var(--blue);color:#fff;text-decoration:none">اتصل الآن</a>
+          <button onclick="logoutStudent()" style="margin-left:8px;padding:8px 12px;border-radius:8px;border:1px solid rgba(11,110,246,0.06)">خروج</button>
+        </div>
+      </div>
+    `;
+  }
+  // لو كان فيه طالب مسجل سابقًا نعرضه
+  (function(){
+    const students = JSON.parse(localStorage.getItem('students') || '[]');
+    if(students.length>0){
+      const last = students[students.length-1];
+      showStudentCard(last.name, last.phone);
+    }
+  })();
+
+  function logoutStudent(){
+    // نحتفظ بالسجلات لكن نخفي البطاقة
+    document.getElementById('studentArea').innerHTML = '';
+  }
+
+  // فتح بلايلست بسيط (مثال) — هنا تقدر تربط بقنوات يوتيوب أو قائمة فيديوهات فعلية
+  function openPlaylist(key){
+    const area = document.getElementById('playlistArea');
+    const label = {
+      FirstPrep: 'فيديوهات أولى إعدادي',
+      SecondPrep: 'فيديوهات ثانية إعدادي',
+      FirstSecondary: 'فيديوهات أولى ثانوي',
+      SecondSecondary: 'فيديوهات ثانية ثانوي'
+    }[key] || 'الفيديوهات';
+
+    // مثال لفيديو مضمّن (استبدل src برابط فيديو حقيقي أو بلوك صيغ/embed)
+    area.innerHTML = `
+      <div style="margin-top:12px;padding:12px;border-radius:12px;background:#fff;border:1px solid rgba(11,110,246,0.04)">
+        <h4>${label}</h4>
+        <p style="color:var(--muted);font-size:13px">مثال فيديو: استبدل هذا الفيديو بروابط القناة أو فيديوهاتك.</p>
+        <div style="margin-top:8px">
+          <iframe width="100%" height="320" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="${label}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    `;
+    // تمرير للمحتوى
+    area.scrollIntoView({behavior:'smooth'});
+  }
+
+  // Vodafone Cash: تعليمات عامة (لا تنفذ الدفع فعليًا)
+  function showVodafoneInfo(){
+    const num = document.getElementById('vfNumber').value.trim();
+    if(!num){ alert('ضع رقم Vodafone Cash أولاً'); return; }
+    alert(
+      'خطوات مُقترحة لإستقبال مبالغ عبر Vodafone Cash:\\n' +
+      '1) افتح حساب تجاري لدى Vodafone Cash أو استخدم حسابك التجاري مع مزوّد دفع.\\n' +
+      '2) احصل على رابط دفع أو QR من لوحة التحكم الخاصة بهم.\\n' +
+      '3) ضع الرابط أو صورة الـQR هنا في الموقع (استبدل الزر "طريقة الدفع" بوضع صورة QR أو رابط مباشر).\\n\\n' +
+      'لا يمكن تنفيذ الدفع مباشرة من هذا الكود — تحتاج لربط API خاص بمزود الدفع.'
+    );
+  }
+
+  // حماية بسيطة لطباعة HTML داخل النص
+  function escapeHtml(text){
+    return text.replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; });
+  }
+</script>
+
+</body>
+</html>
